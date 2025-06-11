@@ -1,0 +1,133 @@
+script 1 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+public class Win : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+       
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(3);
+        }
+//Make sure to build scene and make sure number values are matched up!//
+    }
+}
+
+script 2
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+public class Level2 : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+       
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(2);
+        }
+//Make sure to build scene and make sure number values are matched up!//
+    }
+}
+
+script 3
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+public class LoseScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+       
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(1);
+        }
+//Make sure to build scene and make sure number values are matched up!//
+    }
+}
+
+script 4
+// use to allow player to jump and move left and right 
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControllerr : MonoBehaviour
+{
+    public float speed = 5f;
+    public float jumpSpeed = 8f;
+    private float direction = 0f;
+    private Rigidbody2D player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        direction = Input.GetAxis("Horizontal");
+
+        if (direction > 0f)
+        {
+            player.linearVelocity = new Vector2(direction * speed, player.linearVelocity.y);
+        }
+        else if (direction < 0f)
+        {
+            player.linearVelocity = new Vector2(direction * speed, player.linearVelocity.y);
+        }
+        else
+        {
+            player.linearVelocity = new Vector2(0, player.linearVelocity.y);
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            player.linearVelocity = new Vector2(player.linearVelocity.x, jumpSpeed);
+        }
+    }
+}
+
+script 1: script 1 is the win script and activates when the player touches the chest that has the win script attached
+script 2: script 2 is the level 2 script and when the player touches the door on the first level it takes them to level 2
+script 3: script 3 is the lose script and it activates when the player touches the spikes attached to the lose script making them lose
+script 4: script 4 is the movement script and it allows the player to move and jump
